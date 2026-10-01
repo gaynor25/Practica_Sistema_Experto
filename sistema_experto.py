@@ -45,6 +45,33 @@ class SistemaExperto(KnowledgeEngine):
         print("Diagnostico: Gastroenteritis")            
         print("Se recomienda acudir con el medic☻")
         self.declare(Diagnostico(enfermedad="Gastroenteritis"))
+        
+    #COVID-19
+    @Rule(
+             Sintoma(fiebre=True, tos_seca=True, perdida_olfato=True)
+        )
+    def diagnosticar_covid19(self):
+        print("Diagnostico: covid19")            
+        print("Se recomienda acudir con el medico y tomar unas semanas de cuarentena")
+        self.declare(Diagnostico(enfermedad="covid19"))
+
+    #Resfriado comun
+        @Rule(
+                Sintoma(congestion_nasal=True, estornudos=True, tos_leve=True)
+            )
+        def diagnosticar_resfriado(self):
+            print("Diagnostico: Resfriado comun")            
+            print("Se recomienda ir a consulta y seguir indicaciones")
+            self.declare(Diagnostico(enfermedad="resfriado comun"))
+
+    #Bronquitis
+    @Rule(
+            Sintoma(tos_persistente=True, produccion_flema=True, dificultad_respiratoria=True)
+    )
+    def diagnosticar_bronquitis(self):
+        print("Diagnostico: Bronquitis")
+        print("Se recomienda quedarse en casa y tomar reposo")
+        self.declare(Diagnostico(enfermedad="Bronquitis"))
 
     #REGLA DE RESPALDO
     @Rule(
@@ -120,6 +147,45 @@ engine.declare(Sintoma(
     dolor_de_garganta=True,
     estornudos=True,
     congestion_nasal=True
+))
+
+engine.run()
+
+# CASO 6
+print("\n--- CASO 6 ---")
+engine = SistemaExperto()
+engine.reset()
+
+engine.declare(Sintoma(
+    fiebre=True,
+    tos_seca=True,
+    perdida_olfato=True
+))
+
+engine.run()
+
+# CASO 7
+print("\n--- CASO 7 ---")
+engine = SistemaExperto()
+engine.reset()
+
+engine.declare(Sintoma(
+    congestion_nasal=True,
+    estornudos=True,
+    tos_leve=True
+))
+
+engine.run()
+
+# CASO 8
+print("\n--- CASO 8 ---")
+engine = SistemaExperto()
+engine.reset()
+
+engine.declare(Sintoma(
+    tos_persistente=True,
+    produccion_flema=True,
+    dificultad_respiratoria=True
 ))
 
 engine.run()

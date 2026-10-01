@@ -189,3 +189,16 @@ engine.declare(Sintoma(
 ))
 
 engine.run()
+
+print("\nANALISIS DE CONFLICTOS")
+engine = SistemaExperto()
+engine.reset()
+
+engine.declare(Sintoma(fiebre = True, 
+                       tos=True,
+                       dolor_de_garganta=True,
+                       estornudos=True,
+                       congestion_nasal=True,
+                       picazon_ojos=True))
+
+engine.run()
